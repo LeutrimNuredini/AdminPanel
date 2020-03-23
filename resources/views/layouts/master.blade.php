@@ -24,14 +24,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
-
     </ul>
 
     <!-- SEARCH FORM -->
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" @keyup="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-navbar">
         <div class="input-group-append">
-          <button class="btn btn-navbar" @click="searchit">
+          <button class="btn btn-navbar">
             <i class="fa fa-search"></i>
           </button>
         </div>
@@ -59,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="info">
           <a href="#" class="d-block">
               {{Auth::user()->name}}
-              <p>{{Auth::user()->type}}</p>
+              <!-- <p>{{Auth::user()->type}}</p> -->
           </a>
         </div>
       </div>
@@ -79,7 +78,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
             </li>
 
-            @can('isAdmin')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cog green"></i>
@@ -107,7 +105,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </p>
                 </router-link>
          </li>
-         @endcan
           <li class="nav-item">
                 <router-link to="/profile" class="nav-link">
                     <i class="nav-icon fas fa-user orange"></i>
@@ -144,8 +141,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <router-view></router-view>
 
+        <router-view></router-view>
         <vue-progress-bar></vue-progress-bar>
       </div><!-- /.container-fluid -->
     </div>
@@ -166,11 +163,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
-@auth
-<script>
-    window.user = @json(auth()->user())
-</script>
-@endauth
 
 <script src="/js/app.js"></script>
 </body>
