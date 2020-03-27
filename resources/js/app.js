@@ -8,7 +8,14 @@ require("./bootstrap");
 
 window.Vue = require("vue");
 
-import { Form, HasError, AlertError } from "vform";
+import {
+    Form,
+    HasError,
+    AlertError
+} from "vform";
+
+import Gate from './Gate';
+Vue.prototype.$gate = new Gate(window.user);
 
 import moment from "moment";
 
@@ -39,8 +46,7 @@ Vue.use(VueProgressBar, {
     height: "2px"
 });
 
-const routes = [
-    {
+const routes = [{
         path: "/dashboard",
         component: require("./components/Dashboard.vue").default
     },
@@ -51,14 +57,18 @@ const routes = [
     {
         path: "/profile",
         component: require("./components/Profile.vue").default
+    },
+    {
+        path: "/developer",
+        component: require("./components/Developer.vue").default
     }
 ];
 
-Vue.filter("upText", function(text) {
+Vue.filter("upText", function (text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 });
 
-Vue.filter("myDate", function(created) {
+Vue.filter("myDate", function (created) {
     return moment(created).format("MMMM Do YYYY");
 });
 
@@ -66,6 +76,21 @@ const router = new VueRouter({
     mode: "history",
     routes
 });
+
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
 
 Vue.component(
     "example-component",
